@@ -65,7 +65,7 @@ const ImageButton = ({ onClick }: { onClick: () => void }) => {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                  <span className="text-black font-black text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wider drop-shadow-lg" style={{
            textShadow: '2px 2px 0px #ffffff, 4px 4px 0px rgba(255,255,255,0.5)',
-           fontFamily: 'Courier New, Monaco, Consolas, monospace',
+           fontFamily: 'var(--font-press-start-2p), "Press Start 2P", monospace',
            textTransform: 'uppercase',
            fontWeight: '900'
          }}>

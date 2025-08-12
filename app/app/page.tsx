@@ -130,6 +130,16 @@ export default function Home() {
           </p>
         </div>
 
+        {/* Quick link to new page */}
+        <div className="mt-6">
+          <a
+            href="/new-page"
+            className="inline-block px-4 py-2 rounded border border-white/20 bg-white/10 hover:bg-white/20 transition"
+          >
+            Go to New Page →
+          </a>
+        </div>
+
         {/* Floating elements */}
         <div className="absolute top-10 left-10 w-4 h-4 bg-white rounded-full animate-bounce"></div>
         <div className="absolute top-20 right-20 w-3 h-3 bg-gray-400 rounded-full animate-bounce animation-delay-1000"></div>

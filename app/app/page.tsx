@@ -67,16 +67,24 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Title */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+        {/* Xplore25 Heading */}
+        <h1 className="text-6xl md:text-8xl font-bold text-white mb-2 tracking-tight">
           <span className="bg-gradient-to-r from-gray-300 via-white to-gray-400 bg-clip-text text-transparent">
-            Under
-          </span>
-          <br />
-          <span className="bg-gradient-to-r from-gray-400 via-gray-300 to-white bg-clip-text text-transparent">
-            Construction
+            Xplore25
           </span>
         </h1>
+
+        {/* Department of CSE Subtitle */}
+        <p className="text-xl md:text-2xl text-gray-400 mb-6 font-medium tracking-wide">
+          Department of CSE
+        </p>
+
+        {/* Under Construction Title */}
+        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+          <span className="bg-gradient-to-r from-gray-400 via-gray-300 to-white bg-clip-text text-transparent">
+            Under Construction
+          </span>
+        </h2>
 
         {/* Subtitle */}
         <p className="text-xl md:text-2xl text-gray-300 mb-8 font-light">

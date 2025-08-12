@@ -4,7 +4,7 @@ import { MinecraftBackground } from "@/components/minecraft-background";
 import { MinecraftWindow } from "@/components/minecraft-window";
 import { MinecraftButton } from "@/components/minecraft-button";
 import { MinecraftImageCarousel } from "@/components/minecraft-image-carousel";
-import { motion } from "framer-motion";
+import { motion, type HTMLMotionProps } from "framer-motion";
 
 export default function NewPage() {
   return (
@@ -20,14 +20,7 @@ export default function NewPage() {
 
         {/* Big, separate sections */}
         <div className="flex justify-start">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            whileHover={{ scale: 1.01 }}
-            className="w-full md:w-[48rem]"
-          >
+          <div className="w-full md:w-[48rem]">
             <MinecraftWindow title="Introduction" biome="grassland" className="mb-8 text-stone-900">
               <div className="max-w-none">
                 <p className="text-lg leading-relaxed">
@@ -41,7 +34,7 @@ export default function NewPage() {
                 </p>
               </div>
             </MinecraftWindow>
-          </motion.div>
+          </div>
         </div>
 
         <div className="flex justify-end">

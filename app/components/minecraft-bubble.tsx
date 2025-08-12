@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { type HTMLAttributes, forwardRef } from "react"
 
-interface MinecraftBubbleProps extends HTMLAttributes<HTMLDivElement> {
+interface MinecraftBubbleProps extends Omit<HTMLAttributes<HTMLDivElement>, 
+  'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onTransitionEnd'> {
   biome?: "nether" | "cherry" | "grassland" | "desert" | "ice" | "barren" | "caves"
   size?: "sm" | "md" | "lg"
   floating?: boolean

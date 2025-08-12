@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { type TextareaHTMLAttributes, forwardRef } from "react"
 
-interface MinecraftTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface MinecraftTextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 
+  'onAnimationStart' | 'onAnimationEnd' | 'onTransitionEnd' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   biome?: "nether" | "cherry" | "grassland" | "desert" | "ice" | "barren" | "caves"
   label?: string
 }

@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { type InputHTMLAttributes, forwardRef } from "react"
 
-interface MinecraftInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface MinecraftInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
+  'onAnimationStart' | 'onAnimationEnd' | 'onTransitionEnd' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   biome?: "nether" | "cherry" | "grassland" | "desert" | "ice" | "barren" | "caves"
   label?: string
 }

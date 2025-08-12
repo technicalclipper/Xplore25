@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { type HTMLAttributes, forwardRef } from "react"
 
-interface MinecraftCardProps extends HTMLAttributes<HTMLDivElement> {
+interface MinecraftCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 
+  'onAnimationStart' | 'onAnimationEnd' | 'onTransitionEnd' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   title?: string
   icon?: string
   biome?: "nether" | "cherry" | "grassland" | "desert" | "ice" | "barren" | "caves"

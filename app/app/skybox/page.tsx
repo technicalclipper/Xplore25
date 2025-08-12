@@ -94,11 +94,11 @@ export default function SkyboxPage() {
       className="w-full h-screen bg-gray-900 relative overflow-hidden"
       style={{ touchAction: "none" }}
     >
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-900">
-          <div className="text-white text-xl">Loading 3D Scene...</div>
-        </div>
-      )}
+             {isLoading && (
+         <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-900">
+           <div className="text-white text-xl">Generating World...</div>
+         </div>
+       )}
       <div className="w-full h-full absolute inset-0">
         <Canvas 
           camera={{ 

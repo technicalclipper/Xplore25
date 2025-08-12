@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { type FormHTMLAttributes, forwardRef } from "react"
 
-interface MinecraftFormProps extends FormHTMLAttributes<HTMLFormElement> {
+interface MinecraftFormProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 
+  'onAnimationStart' | 'onAnimationEnd' | 'onTransitionEnd' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   biome?: "nether" | "cherry" | "grassland" | "desert" | "ice" | "barren" | "caves"
   title?: string
 }

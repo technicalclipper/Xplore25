@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { type ButtonHTMLAttributes, forwardRef } from "react"
 
-interface MinecraftButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface MinecraftButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 
+  'onAnimationStart' | 'onAnimationEnd' | 'onTransitionEnd' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   variant?:
     | "grass"
     | "stone"

@@ -113,7 +113,7 @@ export function MinecraftImageCarousel({ images, biome = "grassland", className 
           key={`desc-${currentIndex}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center p-3 bg-black bg-opacity-20 border-2 border-black"
+          className="text-center p-3 bg-black bg-opacity-30 border-2 border-black text-white"
         >
           <p className="text-sm font-bold">{images[currentIndex].description}</p>
         </motion.div>

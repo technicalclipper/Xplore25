@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function EventsPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
+  const flipAudioRef = useRef<HTMLAudioElement>(null);
   
   const [events, setEvents] = useState([
     {
@@ -73,6 +74,9 @@ export default function EventsPage() {
     } else {
       // If card is not flipped, flip it first
       setFlippedCards(prev => [...prev, cardId]);
+      if (flipAudioRef.current) {
+        flipAudioRef.current.play();
+      }
     }
   };
 
@@ -91,6 +95,17 @@ export default function EventsPage() {
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
+
+  // Auto-flip cards back after 5 seconds
+  useEffect(() => {
+    if (flippedCards.length > 0) {
+      const timer = setTimeout(() => {
+        setFlippedCards([]);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [flippedCards]);
 
   return (
     <div className="min-h-screen relative">
@@ -557,55 +572,105 @@ export default function EventsPage() {
 
       {/* Modal for Selected Card */}
       {selectedCard && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="relative max-w-md w-full">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="relative max-w-6xl w-full">
             <button 
               onClick={closeModal}
-              className="absolute -top-4 -right-4 bg-white rounded-full p-2 text-black hover:bg-gray-200 transition-colors z-10"
+              className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-white rounded-full p-1.5 sm:p-2 text-black hover:bg-gray-200 transition-colors z-10"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             
-            <div className="bg-white rounded-lg p-6 shadow-xl">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-xl max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
               {(() => {
                 const event = events.find(e => e.id === selectedCard);
                 if (!event) return null;
                 
                 return (
-                  <div>
-                    <div className="h-64 mb-4 rounded-lg overflow-hidden bg-gray-100">
-                      <img 
-                        src={event.image} 
-                        alt={event.title}
-                        className="w-full h-full object-cover"
-                        style={{ imageRendering: 'pixelated' }}
-                      />
+                  <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+                    {/* Left Column - Existing Content */}
+                    <div className="flex-1 flex flex-col justify-center">
+                      <div className="h-48 sm:h-64 mb-3 rounded-lg overflow-hidden bg-gray-100">
+                        <img 
+                          src={event.image} 
+                          alt={event.title}
+                          className="w-full h-full object-cover"
+                          style={{ imageRendering: 'pixelated' }}
+                        />
+                      </div>
+                      
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium">
+                          {event.category}
+                        </span>
+                        <span className="text-gray-500 text-xs">
+                          #{event.id.toString().padStart(2, '0')}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">
+                        {event.title}
+                      </h3>
+                      
+                      <p className="text-xs sm:text-sm text-gray-600 mb-4">
+                        {event.description}
+                      </p>
+                      
+                      <button 
+                        className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium text-sm"
+                      >
+                        Learn More
+                      </button>
                     </div>
-                    
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="px-3 py-1 bg-gray-200 rounded-full text-gray-700 text-sm font-medium">
-                        {event.category}
-                      </span>
-                      <span className="text-gray-500 text-sm">
-                        #{event.id.toString().padStart(2, '0')}
-                      </span>
+
+                    {/* Right Column - Rules and Regulations */}
+                    <div className="flex-1 lg:border-l lg:border-gray-200 lg:pl-6 pt-4 lg:pt-0">
+                      <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-3">Rules & Regulations</h4>
+                      
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                          <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">General Rules</h5>
+                          <ul className="text-xs text-gray-600 space-y-1">
+                            <li>• All participants must register before the event</li>
+                            <li>• Valid student ID is mandatory for participation</li>
+                            <li>• Follow all safety guidelines and instructions</li>
+                            <li>• Respect other participants and organizers</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                          <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">Event Specific</h5>
+                          <ul className="text-xs text-gray-600 space-y-1">
+                            <li>• Arrive 15 minutes before the event starts</li>
+                            <li>• Bring necessary equipment if required</li>
+                            <li>• No external assistance during competitions</li>
+                            <li>• Decisions of judges are final</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                          <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">Code of Conduct</h5>
+                          <ul className="text-xs text-gray-600 space-y-1">
+                            <li>• Maintain professional behavior throughout</li>
+                            <li>• No use of unfair means or cheating</li>
+                            <li>• Report any issues to event coordinators</li>
+                            <li>• Help maintain a clean event environment</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                          <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Important Notes</h5>
+                          <ul className="text-xs text-blue-600 space-y-1">
+                            <li>• Winners will be announced at the closing ceremony</li>
+                            <li>• Certificates will be provided to all participants</li>
+                            <li>• Photos and videos may be taken during events</li>
+                            <li>• Contact organizers for any special requirements</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-800 mb-3">
-                      {event.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-6">
-                      {event.description}
-                    </p>
-                    
-                    <button 
-                      className="w-full py-3 px-4 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium"
-                    >
-                      Learn More
-                    </button>
                   </div>
                 );
               })()}
@@ -613,6 +678,9 @@ export default function EventsPage() {
           </div>
         </div>
       )}
+      
+      {/* Audio for flip sound */}
+      <audio ref={flipAudioRef} src="/assets/flip.mp3" preload="auto" />
     </div>
   );
 }

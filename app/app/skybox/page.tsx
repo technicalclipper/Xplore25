@@ -76,6 +76,30 @@ const ImageButton = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
+const BackgroundMusic = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3; // Set volume to 30%
+      audioRef.current.loop = true; // Loop the music
+      
+      // Try to autoplay the music
+      const playMusic = async () => {
+        try {
+          await audioRef.current?.play();
+        } catch (error) {
+          console.log('Autoplay prevented by browser. User interaction required.');
+        }
+      };
+      
+      playMusic();
+    }
+  }, []);
+
+  return <audio ref={audioRef} src="/assets/bgm.mp3" preload="auto" />;
+};
+
 export default function SkyboxPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -145,6 +169,7 @@ export default function SkyboxPage() {
           <ImageButton onClick={handleExplore} />
         </div>
       </div>
+      <BackgroundMusic />
     </div>
   );
 }

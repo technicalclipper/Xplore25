@@ -7,139 +7,9 @@ import * as THREE from "three";
 
 const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
-const BoxWithEdges = ({
-  position,
-}: {
-  position: THREE.Vector3;
-}) => {
-  return (
-    <group position={position}>
-      <mesh>
-        <boxGeometry args={[0.5, 0.5, 0.5]} />
-        <meshStandardMaterial
-          color="#4a4a4a"
-          transparent={true}
-          opacity={0.9}
-        />
-      </mesh>
-      <lineSegments>
-        <edgesGeometry args={[new THREE.BoxGeometry(0.5, 0.5, 0.5)]} />
-        <lineBasicMaterial color="#1a1a1a" />
-      </lineSegments>
-    </group>
-  );
-};
-
-type LetterShape = (0 | 1)[][];
-
-const BoxLetter = ({
-  letter,
-  position,
-}: {
-  letter: string;
-  position: THREE.Vector3;
-}) => {
-  const group = useRef<THREE.Group>(null);
-
-  const getLetterShape = (letter: string): LetterShape => {
-    const shapes: Record<string, LetterShape> = {
-      X: [
-        [1, 0, 1],
-        [0, 1, 0],
-        [0, 1, 0],
-        [0, 1, 0],
-        [1, 0, 1],
-      ],
-      P: [
-        [1, 1, 0],
-        [1, 0, 1],
-        [1, 1, 0],
-        [1, 0, 0],
-        [1, 0, 0],
-      ],
-      L: [
-        [1, 0, 0],
-        [1, 0, 0],
-        [1, 0, 0],
-        [1, 0, 0],
-        [1, 1, 1],
-      ],
-      O: [
-        [0, 1, 0],
-        [1, 0, 1],
-        [1, 0, 1],
-        [1, 0, 1],
-        [0, 1, 0],
-      ],
-      R: [
-        [1, 1, 0],
-        [1, 0, 1],
-        [1, 1, 0],
-        [1, 0, 1],
-        [1, 0, 1],
-      ],
-      E: [
-        [1, 1, 1],
-        [1, 0, 0],
-        [1, 1, 0],
-        [1, 0, 0],
-        [1, 1, 1],
-      ],
-      "2": [
-        [0, 1, 0],
-        [1, 0, 1],
-        [0, 0, 1],
-        [0, 1, 0],
-        [1, 1, 1],
-      ],
-      "5": [
-        [1, 1, 1],
-        [1, 0, 0],
-        [1, 1, 1],
-        [0, 0, 1],
-        [1, 1, 1],
-      ],
-    };
-    return shapes[letter] || shapes["X"];
-  };
-
-  const letterShape = getLetterShape(letter);
-
-  return (
-    <group ref={group} position={position}>
-      {letterShape.map((row, i) =>
-        row.map((cell, j) => {
-          if (cell) {
-            let xOffset = j * 0.5 - 0.75;
-
-            return (
-              <BoxWithEdges
-                key={`${i}-${j}`}
-                position={new THREE.Vector3(xOffset, (4 - i) * 0.5 - 1, 0)}
-              />
-            );
-          }
-          return null;
-        })
-      )}
-    </group>
-  );
-};
-
 const Scene = () => {
   return (
     <>
-      <group position={[0, 0, 0]} rotation={[0, Math.PI / 1.5, 0]}>
-        <BoxLetter letter="X" position={new THREE.Vector3(-7, 0, 0)} />
-        <BoxLetter letter="P" position={new THREE.Vector3(-5, 0, 0)} />
-        <BoxLetter letter="L" position={new THREE.Vector3(-3, 0, 0)} />
-        <BoxLetter letter="O" position={new THREE.Vector3(-1, 0, 0)} />
-        <BoxLetter letter="R" position={new THREE.Vector3(1, 0, 0)} />
-        <BoxLetter letter="E" position={new THREE.Vector3(3, 0, 0)} />
-        <BoxLetter letter="2" position={new THREE.Vector3(5, 0, 0)} />
-        <BoxLetter letter="5" position={new THREE.Vector3(7, 0, 0)} />
-      </group>
-      
       <OrbitControls
         enableZoom={!isMobile}
         enablePan={!isMobile}
@@ -166,53 +36,43 @@ const Scene = () => {
   );
 };
 
-const ArcadeButton = ({ onClick }: { onClick: () => void }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const ImageButton = ({ onClick }: { onClick: () => void }) => {
   const [isPressed, setIsPressed] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isHovered && !isMobile) {
-      interval = setInterval(() => {
-        setIsAnimating((prev) => !prev);
-      }, 200);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isHovered]);
 
   return (
-    <div className="pixel-button-container">
-      <div className="scanlines"></div>
-      <button
-        onClick={onClick}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          setIsPressed(false);
-          setIsAnimating(false);
+    <button
+      onClick={onClick}
+      onMouseDown={() => setIsPressed(true)}
+      onMouseUp={() => setIsPressed(false)}
+      onMouseLeave={() => setIsPressed(false)}
+      onTouchStart={() => setIsPressed(true)}
+      onTouchEnd={() => setIsPressed(false)}
+      className="relative transition-transform duration-100 ease-in-out hover:scale-105 active:scale-95"
+      style={{
+        transform: isPressed ? 'scale(0.95)' : 'scale(1)',
+        imageRendering: 'pixelated'
+      }}
+    >
+      <img
+        src="/assets/button.png"
+        alt="EXPLORE"
+        className="max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] w-auto h-auto drop-shadow-2xl"
+        style={{
+          filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.6))',
+          imageRendering: 'pixelated'
         }}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
-        onTouchStart={() => setIsPressed(true)}
-        onTouchEnd={() => setIsPressed(false)}
-        className={`
-          pixel-button
-          ${isPressed ? "pixel-button-pressed" : ""}
-          ${isHovered && isAnimating && !isMobile ? "pixel-button-blink" : ""}
-        `}
-      >
-        <span className="pixel-text">EXPLORE</span>
-        <div className={`pixel-arrow ${isHovered && !isMobile ? "pixel-arrow-animated" : ""}`}>
-          <div className="pixel"></div>
-          <div className="pixel"></div>
-          <div className="pixel"></div>
-        </div>
-      </button>
-    </div>
+      />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                 <span className="text-black font-black text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wider drop-shadow-lg" style={{
+           textShadow: '2px 2px 0px #ffffff, 4px 4px 0px rgba(255,255,255,0.5)',
+           fontFamily: 'Courier New, Monaco, Consolas, monospace',
+           textTransform: 'uppercase',
+           fontWeight: '900'
+         }}>
+          EXPLORE
+        </span>
+      </div>
+    </button>
   );
 };
 
@@ -266,8 +126,24 @@ export default function SkyboxPage() {
           <Scene />
         </Canvas>
       </div>
-      <div className="absolute bottom-24 md:bottom-16 left-0 right-0 flex justify-center pointer-events-auto">
-        <ArcadeButton onClick={handleExplore} />
+      
+             {/* XPLORES Image Overlay */}
+       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mt-16">
+                 <div className="relative flex flex-col items-center gap-2">
+          {/* XPLORES Logo */}
+          <img 
+            src="/assets/logo.png" 
+            alt="XPLORES" 
+            className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl w-auto h-auto drop-shadow-2xl"
+            style={{
+              filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.5))',
+              imageRendering: 'pixelated'
+            }}
+          />
+          
+          {/* Button below the logo */}
+          <ImageButton onClick={handleExplore} />
+        </div>
       </div>
     </div>
   );

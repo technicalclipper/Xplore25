@@ -1,0 +1,8 @@
+battle of biomes  - public/assets/battleofbiomes.png
+black smith's showcase - public/assets/blacksmithshowcase.png
+capture the flag -  public/assets/capturetheflag.png
+crafting the interface - public/assets/craftingtheinterface.png
+diamond docs - public/assets/diamonddocs.png
+lectern lore - public/assets/lecternlore.png
+nether quest - public/assets/netherquest.png
+pitch craft - public/assets/pitchcraft.png

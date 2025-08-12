@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
 const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
@@ -102,6 +103,7 @@ const BackgroundMusic = () => {
 
 export default function SkyboxPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
     // Simple loading delay
@@ -110,7 +112,7 @@ export default function SkyboxPage() {
   }, []);
 
   const handleExplore = () => {
-    window.location.href = "/";
+    router.push("/events");
   };
 
   return (

@@ -6,7 +6,11 @@ export default function EventsPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(false);
   const flipAudioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   const [events, setEvents] = useState([
     {
@@ -107,18 +111,71 @@ export default function EventsPage() {
     }
   }, [flippedCards]);
 
+  // Video loading optimization
+  useEffect(() => {
+    if (videoRef.current) {
+      const video = videoRef.current;
+      
+      // Try to load the video
+      video.load();
+      
+             // Set a timeout to show video even if events don't fire
+       const timeout = setTimeout(() => {
+         if (!videoLoaded && !videoError) {
+           setVideoLoaded(true);
+         }
+       }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [videoLoaded, videoError]);
+
   return (
     <div className="min-h-screen relative">
-      {/* Background Image Section */}
-      <div 
-        className="h-[85vh] relative"
-        style={{
-          backgroundImage: 'url("/assets/homebg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
+      {/* Background Video Section */}
+      <div className="h-[85vh] relative overflow-hidden">
+                 <video
+           ref={videoRef}
+           autoPlay
+           muted
+           playsInline
+           className="absolute inset-0 w-full h-full object-cover"
+           preload="auto"
+           poster="/assets/homebg.jpg"
+           style={{
+             willChange: 'transform',
+             transform: 'translateZ(0)'
+           }}
+           onLoadedData={() => {
+             setVideoLoaded(true);
+           }}
+           onCanPlay={() => {
+             setVideoLoaded(true);
+           }}
+           onEnded={() => {
+             setVideoEnded(true);
+           }}
+           onError={(e) => {
+             setVideoError(true);
+           }}
+         >
+          <source src="/assets/hero.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+                 {/* Fallback background image - shown while video loads, if video fails, or after video ends */}
+         <div 
+           className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
+             videoLoaded && !videoError && !videoEnded ? 'opacity-0' : 'opacity-100'
+           }`}
+           style={{
+             backgroundImage: 'url("/assets/homebg.jpg")',
+             backgroundSize: 'cover',
+             backgroundPosition: 'center'
+           }}
+         />
+        
+
         {/* Header */}
         <header 
           className="w-full py-4 px-3 sm:px-6 shadow-lg relative z-10"
@@ -151,16 +208,16 @@ export default function EventsPage() {
         <main className="relative z-10 flex-1 flex items-center justify-center py-5 px-3 sm:px-6 h-full">
           <div className="max-w-7xl mx-auto w-full">
             {/* Page Title */}
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-                <span className="bg-gradient-to-r from-gray-300 via-white to-gray-400 bg-clip-text text-transparent">
-                  Upcoming Events
-                </span>
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-                Discover exciting events, workshops, and competitions organized by the Department of CSE
-              </p>
-            </div>
+                         <div className="text-center mb-12">
+               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 tracking-tight">
+                 <span className="bg-gradient-to-r from-gray-300 via-white to-gray-400 bg-clip-text text-transparent">
+                   {videoEnded ? 'Upcoming Events' : 'Xplore\'25'}
+                 </span>
+               </h2>
+               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto px-4 font-medium">
+                 {videoEnded ? 'Discover exciting events, workshops, and competitions organized by the Department of CSE' : 'Department of CSE'}
+               </p>
+             </div>
           </div>
         </main>
 

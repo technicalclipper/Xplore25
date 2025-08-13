@@ -209,11 +209,11 @@ export default function EventsPage() {
           <div className="max-w-7xl mx-auto w-full">
             {/* Page Title */}
                          <div className="text-center mb-12">
-               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 tracking-tight">
-                 <span className="bg-gradient-to-r from-gray-300 via-white to-gray-400 bg-clip-text text-transparent">
-                   {videoEnded ? 'Upcoming Events' : 'Xplore\'25'}
-                 </span>
-               </h2>
+                               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight">
+                  <span className={videoEnded ? 'bg-gradient-to-r from-gray-300 via-white to-gray-400 bg-clip-text text-transparent' : 'text-white'}>
+                    {videoEnded ? 'Upcoming Events' : 'Xplore\'25'}
+                  </span>
+                </h2>
                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto px-4 font-medium">
                  {videoEnded ? 'Discover exciting events, workshops, and competitions organized by the Department of CSE' : 'Department of CSE'}
                </p>
@@ -376,7 +376,9 @@ export default function EventsPage() {
                                 
                                 <div className="flex-1 flex flex-col">
                                   <div className="flex items-center justify-between mb-2">
-                                    <span className="px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium">
+                                    <span className={`px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium ${
+                                      event.id === 1 || event.id === 2 ? 'max-w-[120px] truncate' : ''
+                                    }`}>
                                       {event.category}
                                     </span>
                                     <span className="text-gray-500 text-xs">
@@ -555,7 +557,9 @@ export default function EventsPage() {
                                   
                                   <div className="flex-1 flex flex-col">
                                     <div className="flex items-center justify-between mb-2">
-                                      <span className="px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium">
+                                      <span className={`px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium ${
+                                        event.id === 1 || event.id === 2 ? 'max-w-[120px] truncate' : ''
+                                      }`}>
                                         {event.category}
                                       </span>
                                       <span className="text-gray-500 text-xs">
@@ -679,7 +683,9 @@ export default function EventsPage() {
                       </div>
                       
                       <div className="flex items-center justify-between mb-2">
-                        <span className="px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium">
+                        <span className={`px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium ${
+                          event.id === 1 || event.id === 2 ? 'max-w-[120px] truncate' : ''
+                        }`}>
                           {event.category}
                         </span>
                         <span className="text-gray-500 text-xs">

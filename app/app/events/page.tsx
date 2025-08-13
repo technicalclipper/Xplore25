@@ -406,7 +406,10 @@ export default function EventsPage() {
                                   
                                   <button 
                                     className="w-full py-2 px-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium text-xs"
-                                    onClick={(e) => e.stopPropagation()}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setSelectedCard(event.id);
+                                    }}
                                   >
                                     Learn More
                                   </button>
@@ -587,7 +590,10 @@ export default function EventsPage() {
                                     
                                     <button 
                                       className="w-full py-2 px-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium text-xs"
-                                      onClick={(e) => e.stopPropagation()}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedCard(event.id);
+                                      }}
                                     >
                                       Learn More
                                     </button>

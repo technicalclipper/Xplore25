@@ -103,3 +103,16 @@ Winning Criteria:
  - Creativity.
  - Feasibility.
  - Presentation style.
+
+
+
+
+1. Diamond Docs (Paper Presentation):  https://forms.gle/7AAzxRWfhURK2VRq7
+2. Battle of Biomes (Head to Head coding) : https://forms.gle/8HK38gcdaHy8Gebs6
+3. Nether Quest (Treasure Hunt) : https://forms.gle/VfSioKBF7szRT3zk9
+4. Crafting the interface (UI/UX Designing) : https://forms.gle/DZqZS2xyvyrw9tbe8
+5. Mine your ideas (Idea Pitching) : https://forms.gle/2WKLLb8VfRpYwe3e6
+6. Capture the craft table (Capture the flag) : https://forms.gle/ozxRQiJhUeUiQSjt9
+Note : Blockmith Showcase and Lectern lore is not fully completed waiting for the event description and rules.
+7. Blockmith Showcase (Best building Competition) : https://forms.gle/cjoTAWxMSrGxndp58
+8. Lectern lore (Minecraft Themed technical quiz) : https://forms.gle/jKoeZaBKyoqttG7r9

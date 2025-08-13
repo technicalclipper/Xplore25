@@ -48,13 +48,13 @@ export default function EventsPage() {
       description: "Only the rarest ideas get mined here. Participants must present innovative, research-backed concepts that can shine like diamonds in the rough.",
       category: "Paper Presentation"
     },
-    {
-      id: 6,
-      title: "Lectern Lore",
-      image: "/assets/lecternlore.png",
-      description: "Details coming soon...",
-      category: "TBA"
-    },
+         {
+       id: 6,
+       title: "Lectern Lore",
+       image: "/assets/lecternlore.png",
+       description: "It's time to put your Minecraft brain to the test! Lectern & Lore is a technical quiz that challenges your knowledge of the game's mechanics, redstone logic, crafting recipes, mob behavior and rich lore. From obscure trivia to in-game problem solving, only the most knowledgeable crafters will stand tall at the end.",
+       category: "Technical Quiz"
+     },
     {
       id: 7,
       title: "Nether Quest 2.0",
@@ -637,17 +637,22 @@ export default function EventsPage() {
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors font-medium border border-white/20 text-sm sm:text-base">
-                Register for Events
-              </button>
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors font-medium border border-white/20 text-sm sm:text-base">
-                Contact Us
-              </button>
+          {/* Footer */}
+          <footer className="mt-16 border-t border-gray-700 pt-8">
+            <div className="text-center">
+              <h4 className="text-xl font-bold text-white mb-6">Student Coordinators</h4>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600">
+                  <h5 className="font-semibold text-white mb-2">Sairam</h5>
+                  <p className="text-gray-300 text-sm">93421 99098</p>
+                </div>
+                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600">
+                  <h5 className="font-semibold text-white mb-2">Mathan Kumar</h5>
+                  <p className="text-gray-300 text-sm">99621 29234</p>
+                </div>
+              </div>
             </div>
-          </div>
+          </footer>
         </div>
       </div>
 
@@ -664,27 +669,39 @@ export default function EventsPage() {
               </svg>
             </button>
             
-            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-xl max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
+                         <div className="bg-white rounded-lg p-2 sm:p-4 shadow-xl max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
               {(() => {
                 const event = events.find(e => e.id === selectedCard);
                 if (!event) return null;
                 
                 return (
-                  <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+                                     <div className="flex flex-col lg:flex-row gap-2 sm:gap-6">
                     {/* Left Column - Existing Content */}
                     <div className="flex-1 flex flex-col justify-center">
-                      <div className="h-48 sm:h-64 mb-3 rounded-lg overflow-hidden bg-gray-100">
-                        <img 
-                          src={event.image} 
-                          alt={event.title}
-                          className="w-full h-full object-cover"
-                          style={{ imageRendering: 'pixelated' }}
-                        />
-                      </div>
+                                             <div className="h-[400px] sm:h-[768px] mb-2 sm:mb-3 rounded-lg overflow-hidden bg-gray-100">
+                         <img 
+                           src={(() => {
+                             const posterImages = {
+                               1: "/assets/battle_of_biomes_poster.png",
+                               2: "/assets/blocksmith_poster.png", 
+                               3: "/assets/capture_the_craft_table_poster.png",
+                               4: "/assets/crafting_the_interface_poster.png",
+                               5: "/assets/diamond_docs_poster.png",
+                               6: "/assets/lectern_lore_poster.png",
+                               7: "/assets/nether_quest_poster.png",
+                               8: "/assets/mine_your_ideas_poster.png"
+                             };
+                             return posterImages[event.id as keyof typeof posterImages] || `/assets/${event.id}.jpg`;
+                           })()}
+                           alt={event.title}
+                           className="w-full h-full object-cover"
+                           style={{ imageRendering: 'pixelated' }}
+                         />
+                       </div>
                       
-                      <div className="flex items-center justify-between mb-2">
-                        <span className={`px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium ${
-                          event.id === 1 || event.id === 2 ? 'max-w-[120px] truncate' : ''
+                      <div className="flex items-center justify-between mb-1 sm:mb-2">
+                        <span className={`px-1 sm:px-2 py-1 bg-gray-200 rounded-full text-gray-700 text-xs font-medium ${
+                          event.id === 1 || event.id === 2 ? 'max-w-[100px] sm:max-w-[120px] truncate' : ''
                         }`}>
                           {event.category}
                         </span>
@@ -693,19 +710,35 @@ export default function EventsPage() {
                         </span>
                       </div>
                       
-                      <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">
+                      <h3 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">
                         {event.title}
                       </h3>
                       
-                      <p className="text-xs sm:text-sm text-gray-600 mb-4">
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">
                         {event.description}
                       </p>
                       
-                      <button 
-                        className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium text-sm"
-                      >
-                        Learn More
-                      </button>
+                                             <button 
+                         className="w-full py-2 px-2 sm:px-4 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium text-xs sm:text-sm"
+                         onClick={() => {
+                           const registrationLinks = {
+                             1: "https://forms.gle/8HK38gcdaHy8Gebs6", // Battle of Biomes
+                             2: "https://forms.gle/cjoTAWxMSrGxndp58", // Blocksmith's Showcase
+                             3: "https://forms.gle/ozxRQiJhUeUiQSjt9", // Capture the Craft Table
+                             4: "https://forms.gle/DZqZS2xyvyrw9tbe8", // Crafting the Interface
+                             5: "https://forms.gle/7AAzxRWfhURK2VRq7", // Diamond Docs
+                             6: "https://forms.gle/jKoeZaBKyoqttG7r9", // Lectern Lore
+                             7: "https://forms.gle/VfSioKBF7szRT3zk9", // Nether Quest
+                             8: "https://forms.gle/2WKLLb8VfRpYwe3e6"  // Pitchcraft
+                           };
+                           const link = registrationLinks[event.id as keyof typeof registrationLinks];
+                           if (link) {
+                             window.open(link, '_blank');
+                           }
+                         }}
+                       >
+                         Register
+                       </button>
                     </div>
 
                                                               {/* Right Column - Event Specific Rules */}
@@ -818,12 +851,28 @@ export default function EventsPage() {
                             </>
                           )}
 
-                          {event.id === 6 && (
-                            <div className="bg-yellow-50 p-2 sm:p-3 rounded-lg border border-yellow-200">
-                              <h5 className="font-semibold text-yellow-700 mb-1 text-xs sm:text-sm">Coming Soon</h5>
-                              <p className="text-xs text-yellow-600">Details for Lectern Lore will be announced soon!</p>
-                            </div>
-                          )}
+                                                     {event.id === 6 && (
+                             <>
+                               <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                 <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Quiz Format</h5>
+                                 <ul className="text-xs text-blue-600 space-y-1">
+                                   <li>• Multiple rounds including rapid-fire questions, puzzles and situational challenges</li>
+                                   <li>• Participants can compete solo or in teams (limit decided by organizers)</li>
+                                   <li>• Covers gameplay mechanics, technical features, crafting, mobs, and lore</li>
+                                   <li>• No internet, books or guides during the quiz</li>
+                                 </ul>
+                               </div>
+                               <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                 <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Scoring & Rules</h5>
+                                 <ul className="text-xs text-green-600 space-y-1">
+                                   <li>• Points awarded for accuracy and speed</li>
+                                   <li>• Tie breakers decided through special challenge rounds</li>
+                                   <li>• Any cheating or disruptive conduct results in immediate disqualification</li>
+                                   <li>• All disputes and scoring decisions are final</li>
+                                 </ul>
+                               </div>
+                             </>
+                           )}
 
                           {event.id === 7 && (
                             <>

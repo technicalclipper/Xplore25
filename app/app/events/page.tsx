@@ -15,59 +15,59 @@ export default function EventsPage() {
   const [events, setEvents] = useState([
     {
       id: 1,
-      title: "Battle of Biomes",
+      title: "Battle of the Biomes",
       image: "/assets/battleofbiomes.png",
-      description: "Compete in the ultimate biome-based challenge where different environments clash in an epic battle of survival and strategy.",
-      category: "Competition"
+      description: "Face off in intense coding duels across the deserts, jungles, and snow biomes. Only the swift and skilled survive.",
+      category: "Head-to-Head Coding"
     },
     {
       id: 2,
-      title: "Black Smith's Showcase",
+      title: "Blocksmith's Showcase",
       image: "/assets/blacksmithshowcase.png",
-      description: "Showcase your crafting skills and demonstrate the art of blacksmithing in this unique exhibition event.",
-      category: "Showcase"
+      description: "Show off your inner architect. Build something jaw-dropping — from cozy cottages to colossal castles — and let the blocks speak for themselves.",
+      category: "Best Building Competition"
     },
     {
       id: 3,
-      title: "Capture the Flag",
+      title: "Capture the Craft Table",
       image: "/assets/capturetheflag.png",
-      description: "Join the classic capture the flag competition with a modern twist and strategic gameplay elements.",
-      category: "Game"
+      description: "Defend your precious Crafting Table while trying to steal your opponent's. Cyber challenges await at every corner.",
+      category: "CTF"
     },
     {
       id: 4,
       title: "Crafting the Interface",
       image: "/assets/craftingtheinterface.png",
-      description: "Learn and demonstrate the art of creating user interfaces through hands-on crafting workshops.",
-      category: "Workshop"
+      description: "Designs worth more than netherite. Create visually stunning and highly usable interfaces.",
+      category: "UI/UX Design"
     },
     {
       id: 5,
       title: "Diamond Docs",
       image: "/assets/diamonddocs.png",
-      description: "Documentation excellence workshop focusing on creating clear, comprehensive, and valuable documentation.",
-      category: "Workshop"
+      description: "Only the rarest ideas get mined here. Participants must present innovative, research-backed concepts that can shine like diamonds in the rough.",
+      category: "Paper Presentation"
     },
     {
       id: 6,
       title: "Lectern Lore",
       image: "/assets/lecternlore.png",
-      description: "Explore the ancient knowledge and share wisdom through interactive lectern presentations and storytelling.",
-      category: "Presentation"
+      description: "Details coming soon...",
+      category: "TBA"
     },
     {
       id: 7,
-      title: "Nether Quest",
+      title: "Nether Quest 2.0",
       image: "/assets/netherquest.png",
-      description: "Embark on an adventurous quest through challenging environments with unique obstacles and rewards.",
-      category: "Adventure"
+      description: "Journey through clues and challenges while dodging more lava accidents than you'd like.",
+      category: "Treasure Hunt"
     },
     {
       id: 8,
-      title: "Pitch Craft",
+      title: "Pitchcraft",
       image: "/assets/pitchcraft.png",
-      description: "Master the art of pitching ideas and projects through structured workshops and practice sessions.",
-      category: "Workshop"
+      description: "Build your empire block by block by pitching an innovative project or product idea to impress the creepers judges.",
+      category: "Idea Pitching"
     }
   ]);
 
@@ -384,11 +384,21 @@ export default function EventsPage() {
                                     </span>
                                   </div>
                                   
-                                  <h3 className="text-sm font-bold text-gray-800 mb-2">
+                                  <h3 className="text-sm font-bold text-gray-800 mb-2 overflow-hidden" style={{
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 2,
+                                    WebkitBoxOrient: 'vertical',
+                                    textOverflow: 'ellipsis'
+                                  }}>
                                     {event.title}
                                   </h3>
                                   
-                                  <p className="text-xs text-gray-600 mb-3 flex-1">
+                                  <p className="text-xs text-gray-600 mb-3 flex-1 overflow-hidden" style={{
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 3,
+                                    WebkitBoxOrient: 'vertical',
+                                    textOverflow: 'ellipsis'
+                                  }}>
                                     {event.description}
                                   </p>
                                   
@@ -553,11 +563,21 @@ export default function EventsPage() {
                                       </span>
                                     </div>
                                     
-                                    <h3 className="text-sm font-bold text-gray-800 mb-2">
+                                    <h3 className="text-sm font-bold text-gray-800 mb-2 overflow-hidden" style={{
+                                      display: '-webkit-box',
+                                      WebkitLineClamp: 2,
+                                      WebkitBoxOrient: 'vertical',
+                                      textOverflow: 'ellipsis'
+                                    }}>
                                       {event.title}
                                     </h3>
                                     
-                                    <p className="text-xs text-gray-600 mb-3 flex-1">
+                                    <p className="text-xs text-gray-600 mb-3 flex-1 overflow-hidden" style={{
+                                      display: '-webkit-box',
+                                      WebkitLineClamp: 3,
+                                      WebkitBoxOrient: 'vertical',
+                                      textOverflow: 'ellipsis'
+                                    }}>
                                       {event.description}
                                     </p>
                                     
@@ -682,52 +702,206 @@ export default function EventsPage() {
                       </button>
                     </div>
 
-                    {/* Right Column - Rules and Regulations */}
-                    <div className="flex-1 lg:border-l lg:border-gray-200 lg:pl-6 pt-4 lg:pt-0">
-                      <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-3">Rules & Regulations</h4>
-                      
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
-                          <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">General Rules</h5>
-                          <ul className="text-xs text-gray-600 space-y-1">
-                            <li>• All participants must register before the event</li>
-                            <li>• Valid student ID is mandatory for participation</li>
-                            <li>• Follow all safety guidelines and instructions</li>
-                            <li>• Respect other participants and organizers</li>
-                          </ul>
-                        </div>
+                                                              {/* Right Column - Event Specific Rules */}
+                      <div className="flex-1 lg:border-l lg:border-gray-200 lg:pl-6 pt-4 lg:pt-0">
+                        <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-3">Event Details & Rules</h4>
+                        
+                        <div className="space-y-2 sm:space-y-3">
+                          {/* Event Specific Content - Shown First */}
+                          {event.id === 1 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Battle Format</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• One-on-one coding matches with a set of problems</li>
+                                  <li>• Limited time for each round</li>
+                                  <li>• Winner advances to the next biome (round)</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• Number of problems solved</li>
+                                  <li>• Accuracy of solutions</li>
+                                  <li>• Time taken</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
 
-                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
-                          <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">Event Specific</h5>
-                          <ul className="text-xs text-gray-600 space-y-1">
-                            <li>• Arrive 15 minutes before the event starts</li>
-                            <li>• Bring necessary equipment if required</li>
-                            <li>• No external assistance during competitions</li>
-                            <li>• Decisions of judges are final</li>
-                          </ul>
-                        </div>
+                          {event.id === 2 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Building Rules</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• Solo or team participation allowed</li>
+                                  <li>• Theme for the build announced at event start</li>
+                                  <li>• Limited build time; must be done in survival or creative (as specified)</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• Creativity and originality</li>
+                                  <li>• Attention to detail</li>
+                                  <li>• Overall aesthetic appeal</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
 
-                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
-                          <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">Code of Conduct</h5>
-                          <ul className="text-xs text-gray-600 space-y-1">
-                            <li>• Maintain professional behavior throughout</li>
-                            <li>• No use of unfair means or cheating</li>
-                            <li>• Report any issues to event coordinators</li>
-                            <li>• Help maintain a clean event environment</li>
-                          </ul>
-                        </div>
+                          {event.id === 3 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">CTF Challenge</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• Solve cybersecurity puzzles and exploit vulnerabilities</li>
+                                  <li>• Defend your Crafting Table while stealing opponent's</li>
+                                  <li>• First to capture all flags wins</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• Number of flags captured</li>
+                                  <li>• Time taken</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
 
-                        <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
-                          <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Important Notes</h5>
-                          <ul className="text-xs text-blue-600 space-y-1">
-                            <li>• Winners will be announced at the closing ceremony</li>
-                            <li>• Certificates will be provided to all participants</li>
-                            <li>• Photos and videos may be taken during events</li>
-                            <li>• Contact organizers for any special requirements</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                          {event.id === 4 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Design Process</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• Participants are given a design brief</li>
+                                  <li>• Must submit final mockup or prototype within allotted time</li>
+                                  <li>• Focus on visually stunning and highly usable interfaces</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• Visual appeal</li>
+                                  <li>• Usability and accessibility</li>
+                                  <li>• Creativity</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
+
+                          {event.id === 5 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Presentation Rules</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• Presentations must be tech-oriented and under 8 minutes</li>
+                                  <li>• Use of slides is mandatory</li>
+                                  <li>• Questions from judges follow each presentation</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• Originality of idea</li>
+                                  <li>• Practicality & impact</li>
+                                  <li>• Presentation clarity and engagement</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
+
+                          {event.id === 6 && (
+                            <div className="bg-yellow-50 p-2 sm:p-3 rounded-lg border border-yellow-200">
+                              <h5 className="font-semibold text-yellow-700 mb-1 text-xs sm:text-sm">Coming Soon</h5>
+                              <p className="text-xs text-yellow-600">Details for Lectern Lore will be announced soon!</p>
+                            </div>
+                          )}
+
+                          {event.id === 7 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Quest Format</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• Follow the clue chain to find hidden treasures</li>
+                                  <li>• Some challenges may be coding or puzzle-based</li>
+                                  <li>• Navigate through challenging environments</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• First to complete the quest</li>
+                                  <li>• Least penalties from wrong clues</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
+
+                          {event.id === 8 && (
+                            <>
+                              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                                <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Pitch Format</h5>
+                                <ul className="text-xs text-blue-600 space-y-1">
+                                  <li>• 5-minute pitch + 3-minute Q&A</li>
+                                  <li>• Use of prototypes, slides, or demos encouraged</li>
+                                  <li>• Present innovative project or product ideas</li>
+                                </ul>
+                              </div>
+                              <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                                <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
+                                <ul className="text-xs text-green-600 space-y-1">
+                                  <li>• Creativity</li>
+                                  <li>• Feasibility</li>
+                                  <li>• Presentation style</li>
+                                </ul>
+                              </div>
+                            </>
+                          )}
+
+                          {/* General Rules Section - Shown After Event Specific */}
+                          <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                            <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">General Rules</h5>
+                            <ul className="text-xs text-gray-600 space-y-1">
+                              <li>• All participants must register before the event</li>
+                              <li>• Valid student ID is mandatory for participation</li>
+                              <li>• Follow all safety guidelines and instructions</li>
+                              <li>• Respect other participants and organizers</li>
+                            </ul>
+                          </div>
+
+                          <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                            <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">Event Specific</h5>
+                            <ul className="text-xs text-gray-600 space-y-1">
+                              <li>• Arrive 15 minutes before the event starts</li>
+                              <li>• Bring necessary equipment if required</li>
+                              <li>• No external assistance during competitions</li>
+                              <li>• Decisions of judges are final</li>
+                            </ul>
+                          </div>
+
+                          <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                            <h5 className="font-semibold text-gray-700 mb-1 text-xs sm:text-sm">Code of Conduct</h5>
+                            <ul className="text-xs text-gray-600 space-y-1">
+                              <li>• Maintain professional behavior throughout</li>
+                              <li>• No use of unfair means or cheating</li>
+                              <li>• Report any issues to event coordinators</li>
+                              <li>• Help maintain a clean event environment</li>
+                            </ul>
+                          </div>
+                                                    {/* Important Notes Section - Common for all events */}
+                           <div className="bg-blue-50 p-2 sm:p-3 rounded-lg border border-blue-200">
+                             <h5 className="font-semibold text-blue-700 mb-1 text-xs sm:text-sm">Important Notes</h5>
+                             <ul className="text-xs text-blue-600 space-y-1">
+                               <li>• Winners will be announced at the closing ceremony</li>
+                               <li>• Certificates will be provided to all participants</li>
+                               <li>• Photos and videos may be taken during events</li>
+                               <li>• Contact organizers for any special requirements</li>
+                             </ul>
+                           </div>
+                         </div>
+                       </div>
                   </div>
                 );
               })()}

@@ -1,8 +1,105 @@
 battle of biomes  - public/assets/battleofbiomes.png
+
+ Battle of the Biomes (Head-to-Head Coding)
+Description:
+Face off in intense coding duels across the deserts, jungles, and snow biomes. Only the swift
+and skilled survive.
+Rules / Flow:
+ - One-on-one coding matches with a set of problems.
+ - Limited time for each round.
+ - Winner advances to the next biome (round).
+Winning Criteria:
+ - Number of problems solved.
+ - Accuracy of solutions.
+ - Time taken.
+
+
+
 black smith's showcase - public/assets/blacksmithshowcase.png
-capture the flag -  public/assets/capturetheflag.png
+
+Blocksmith’s Showcase (Best Building Competition)
+Description:
+Show off your inner architect. Build something jaw-dropping — from cozy cottages to
+colossal castles — and let the blocks speak for themselves.
+Rules / Flow:
+ - Solo or team participation allowed.
+ - Theme for the build announced at event start.
+ - Limited build time; must be done in survival or creative (as specified by organizers).
+Winning Criteria:
+ - Creativity and originality.
+ - Attention to detail.
+ - Overall aesthetic appeal.
+
+capture the Craft table -  public/assets/capturetheflag.png
+
+Capture the Craft Table (CTF)
+Description:
+Defend your precious Crafting Table while trying to steal your opponent’s. Cyber challenges
+await at every corner.
+Rules / Flow:
+ - Solve cybersecurity puzzles and exploit vulnerabilities.
+ - First to capture all flags wins.
+Winning Criteria:
+ - Number of flags captured.
+ - Time taken.
+
 crafting the interface - public/assets/craftingtheinterface.png
+
+Crafting the Interface (UI/UX Design)
+Description:
+Designs worth more than netherite. Create visually stunning and highly usable interfaces.
+Rules / Flow:
+ - Participants are given a design brief.
+ - Must submit final mockup or prototype within the allotted time.
+Winning Criteria:
+ - Visual appeal.
+ - Usability and accessibility.
+ - Creativity.
+
 diamond docs - public/assets/diamonddocs.png
+
+Diamond Docs (Paper Presentation)
+Description:
+Only the rarest ideas get mined here. Participants must present innovative, research-backed
+concepts that can shine like diamonds in the rough.
+Rules / Flow:
+ - Presentations must be tech-oriented and under 8 minutes.
+ - Use of slides is mandatory.
+ - Questions from judges follow each presentation.
+Winning Criteria:
+ - Originality of idea.
+ - Practicality &amp; impact.
+ - Presentation clarity and engagement.
+
 lectern lore - public/assets/lecternlore.png
+
+
+
+
+
 nether quest - public/assets/netherquest.png
+
+Nether Quest 2.0 (Treasure Hunt)
+Description:
+Journey through clues and challenges while dodging more lava accidents than you’d like.
+Rules / Flow:
+ - Follow the clue chain to find hidden treasures.
+ - Some challenges may be coding or puzzle-based.
+Winning Criteria:
+ - First to complete the quest.
+ - Least penalties from wrong clues.
+
 pitch craft - public/assets/pitchcraft.png
+
+Pitchcraft (Idea Pitching)
+Description:
+Build your empire block by block by pitching an innovative project or product idea to
+impress the creepers judges.
+Rules / Flow:
+
+ - 5-minute pitch + 3-minute Q&amp;A.
+ - Use of prototypes, slides, or demos encouraged.
+Winning Criteria:
+ - Creativity.
+ - Feasibility.
+ - Presentation style.

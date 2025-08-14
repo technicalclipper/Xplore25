@@ -64,7 +64,7 @@ export default function EventsPage() {
     },
     {
       id: 8,
-      title: "Pitchcraft",
+      title: "Mine your Ideas",
       image: "/assets/pitchcraft.png",
       description: "Build your empire block by block by pitching an innovative project or product idea to impress the creepers judges.",
       category: "Idea Pitching"
@@ -182,14 +182,19 @@ export default function EventsPage() {
           style={{ backgroundColor: '#252323' }}
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
+              <img 
+                src="/assets/licet.png" 
+                alt="LICET Logo" 
+                className="h-12 sm:h-16 w-auto"
+                style={{ imageRendering: 'pixelated' }}
+              />
               <img 
                 src="/assets/logo.png" 
                 alt="XPLORES Logo" 
                 className="h-8 sm:h-12 w-auto"
                 style={{ imageRendering: 'pixelated' }}
               />
-              
             </div>
             
             <nav className="hidden md:flex items-center space-x-8">
@@ -200,6 +205,13 @@ export default function EventsPage() {
               <a href="/events" className="text-white font-semibold">
                 Events
               </a>
+              
+              <img 
+                src="/assets/eicon.png" 
+                alt="Department Logo" 
+                className="h-12 sm:h-16 w-auto"
+                style={{ imageRendering: 'pixelated' }}
+              />
             </nav>
           </div>
         </header>

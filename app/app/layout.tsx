@@ -10,6 +10,9 @@ const pressStart2P = Press_Start_2P({
   variable: "--font-press-start-2p",
 });
 
+
+
+
 export const metadata: Metadata = {
   title: "Xplore25",
   description: "Xplore25",
@@ -28,3 +31,4 @@ export default function RootLayout({
     </html>
   );
 }
+

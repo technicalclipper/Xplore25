@@ -665,7 +665,7 @@ export default function EventsPage() {
                   <p className="text-gray-300 text-sm">93421 99098</p>
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600">
-                  <h5 className="font-semibold text-white mb-2">Mathan Kumar</h5>
+                  <h5 className="font-semibold text-white mb-2">Mathan Kumaar</h5>
                   <p className="text-gray-300 text-sm">99621 29234</p>
                 </div>
               </div>

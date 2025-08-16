@@ -9,6 +9,8 @@ export default function EventsPage() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [activeTab, setActiveTab] = useState('events' as 'events' | 'workshop');
+  const [showImagePopup, setShowImagePopup] = useState(false);
   const flipAudioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
@@ -252,8 +254,35 @@ export default function EventsPage() {
             </p>
           </div>
 
+          {/* Tab Navigation */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-gray-800 rounded-lg p-1 flex">
+              <button
+                onClick={() => setActiveTab('events')}
+                className={`px-6 py-3 rounded-md font-medium transition-all duration-200 ${
+                  activeTab === 'events'
+                    ? 'bg-white text-gray-800 shadow-lg'
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Events
+              </button>
+              <button
+                onClick={() => setActiveTab('workshop')}
+                className={`px-6 py-3 rounded-md font-medium transition-all duration-200 ${
+                  activeTab === 'workshop'
+                    ? 'bg-white text-gray-800 shadow-lg'
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Workshop
+              </button>
+            </div>
+          </div>
+
           {/* Events Grid/Slider */}
-          <div className="relative mb-12">
+          {activeTab === 'events' && (
+            <div className="relative mb-12">
             {/* Desktop Grid */}
             <div className="hidden sm:block">
               <div className="grid grid-cols-4 gap-6">
@@ -654,6 +683,114 @@ export default function EventsPage() {
               </div>
             </div>
           </div>
+          )}
+
+          {/* Workshop Section */}
+          {activeTab === 'workshop' && (
+            <div className="relative mb-12">
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-600">
+                  <div className="bg-gradient-to-r from-gray-700 to-gray-800 p-6 text-white border-b border-gray-600">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">Team Phoenix Drone Workshop</h3>
+                    <p className="text-gray-300 text-sm sm:text-base">Join us for an exciting, knowledge-packed session</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="grid lg:grid-cols-3 gap-6">
+                      {/* Workshop Image - Left Side */}
+                      <div className="lg:col-span-1">
+                        <img 
+                          src="/assets/drone.png" 
+                          alt="Drone Workshop" 
+                          className="w-full h-auto object-contain rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200"
+                          style={{ imageRendering: 'pixelated' }}
+                          onClick={() => setShowImagePopup(true)}
+                        />
+                      </div>
+                      
+                      {/* Workshop Content - Right Side */}
+                      <div className="lg:col-span-2">
+                        <div className="space-y-8">
+                          {/* Workshop Overview Section */}
+                          <div className="bg-gray-700/50 rounded-lg p-6 border border-gray-600">
+                            <h4 className="text-xl font-bold text-white mb-4 flex items-center">
+                              <span className="w-2 h-8 bg-blue-400 rounded-full mr-3"></span>
+                              Workshop Overview
+                            </h4>
+                            <div className="space-y-4 text-gray-300 leading-relaxed">
+                              <p className="text-base">
+                                Join Team Phoenix for an exciting, knowledge-packed session — from drone basics to building your own, with real-world cases, live sims, team challenges, hands-on builds, live demos, and more!
+                              </p>
+                              <p className="text-base">
+                                Whether you're a beginner curious about drone technology or a tech enthusiast eager to sharpen your skills, this session will equip you with practical knowledge and real experience in UAV technology.
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* What You'll Learn Section */}
+                          <div className="bg-gray-700/50 rounded-lg p-6 border border-gray-600">
+                            <h4 className="text-xl font-bold text-white mb-6 flex items-center">
+                              <span className="w-2 h-8 bg-green-400 rounded-full mr-3"></span>
+                              What You'll Learn
+                            </h4>
+                            <div className="grid sm:grid-cols-2 gap-4">
+                              <ul className="space-y-3 text-gray-300">
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Drone basics and fundamentals</span>
+                                </li>
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Building your own drone</span>
+                                </li>
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Real-world case studies</span>
+                                </li>
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Live simulations</span>
+                                </li>
+                              </ul>
+                              <ul className="space-y-3 text-gray-300">
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Team challenges</span>
+                                </li>
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Hands-on building experience</span>
+                                </li>
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">Live demonstrations</span>
+                                </li>
+                                <li className="flex items-center">
+                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm font-medium">UAV technology insights</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 pt-6 border-t border-gray-600">
+                      <div className="flex justify-center">
+                        <button 
+                          className="bg-white hover:bg-gray-200 text-gray-800 font-medium py-3 px-8 rounded-lg transition-colors"
+                          onClick={() => window.open('https://forms.gle/jcNwQCzPzTQ8jeBu6', '_blank')}
+                        >
+                          Register for Workshop
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Footer */}
           <footer className="mt-16 border-t border-gray-700 pt-8">
@@ -817,6 +954,13 @@ export default function EventsPage() {
                                   <li>• First to capture all flags wins</li>
                                 </ul>
                               </div>
+                              <div className="bg-yellow-50 p-2 sm:p-3 rounded-lg border border-yellow-200">
+                                <h5 className="font-semibold text-yellow-700 mb-1 text-xs sm:text-sm">Participation</h5>
+                                <ul className="text-xs text-yellow-600 space-y-1">
+                                  <li>• 1-3 participants allowed per team</li>
+                                  <li>• Solo participation also allowed</li>
+                                </ul>
+                              </div>
                               <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
                                 <h5 className="font-semibold text-green-700 mb-1 text-xs sm:text-sm">Winning Criteria</h5>
                                 <ul className="text-xs text-green-600 space-y-1">
@@ -978,6 +1122,31 @@ export default function EventsPage() {
                   </div>
                 );
               })()}
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Image Popup Modal */}
+      {showImagePopup && (
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+          <div className="relative max-w-4xl w-full max-h-[90vh]">
+            <button 
+              onClick={() => setShowImagePopup(false)}
+              className="absolute -top-4 -right-4 bg-white rounded-full p-2 text-black hover:bg-gray-200 transition-colors z-10"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <div className="bg-transparent rounded-lg overflow-hidden">
+              <img 
+                src="/assets/drone.png" 
+                alt="Drone Workshop" 
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+                style={{ imageRendering: 'pixelated' }}
+              />
             </div>
           </div>
         </div>

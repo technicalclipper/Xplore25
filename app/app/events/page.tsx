@@ -11,6 +11,8 @@ export default function EventsPage() {
   const [videoEnded, setVideoEnded] = useState(false);
   const [activeTab, setActiveTab] = useState('events' as 'events' | 'workshop');
   const [showImagePopup, setShowImagePopup] = useState(false);
+  const [popupImage, setPopupImage] = useState('');
+  const [popupImageAlt, setPopupImageAlt] = useState('');
   const flipAudioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
@@ -688,11 +690,12 @@ export default function EventsPage() {
           {/* Workshop Section */}
           {activeTab === 'workshop' && (
             <div className="relative mb-12">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-6xl mx-auto space-y-8">
+                {/* Flutter Workshop */}
                 <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-600">
-                  <div className="bg-gradient-to-r from-gray-700 to-gray-800 p-6 text-white border-b border-gray-600">
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">Team Phoenix Drone Workshop</h3>
-                    <p className="text-gray-300 text-sm sm:text-base">Join us for an exciting, knowledge-packed session</p>
+                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white border-b border-gray-600">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">FLUTTER WORKSHOP</h3>
+                    <p className="text-blue-100 text-sm sm:text-base">~Design Once, Deliver Everywhere.</p>
                   </div>
                   
                   <div className="p-6">
@@ -700,76 +703,50 @@ export default function EventsPage() {
                       {/* Workshop Image - Left Side */}
                       <div className="lg:col-span-1">
                         <img 
-                          src="/assets/drone.png" 
-                          alt="Drone Workshop" 
+                          src="/assets/flutter.jpg" 
+                          alt="Flutter Workshop" 
                           className="w-full h-auto object-contain rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200"
                           style={{ imageRendering: 'pixelated' }}
-                          onClick={() => setShowImagePopup(true)}
+                          onClick={() => {
+                            setPopupImage('/assets/flutter.jpg');
+                            setPopupImageAlt('Flutter Workshop');
+                            setShowImagePopup(true);
+                          }}
                         />
                       </div>
                       
                       {/* Workshop Content - Right Side */}
                       <div className="lg:col-span-2">
-                        <div className="space-y-8">
+                        <div className="space-y-6">
                           {/* Workshop Overview Section */}
                           <div className="bg-gray-700/50 rounded-lg p-6 border border-gray-600">
                             <h4 className="text-xl font-bold text-white mb-4 flex items-center">
                               <span className="w-2 h-8 bg-blue-400 rounded-full mr-3"></span>
                               Workshop Overview
                             </h4>
-                            <div className="space-y-4 text-gray-300 leading-relaxed">
+                            <div className="text-gray-300 leading-relaxed">
                               <p className="text-base">
-                                Join Team Phoenix for an exciting, knowledge-packed session — from drone basics to building your own, with real-world cases, live sims, team challenges, hands-on builds, live demos, and more!
-                              </p>
-                              <p className="text-base">
-                                Whether you're a beginner curious about drone technology or a tech enthusiast eager to sharpen your skills, this session will equip you with practical knowledge and real experience in UAV technology.
+                                The Flutter Workshop introduces participants to Google's powerful open-source UI toolkit for crafting natively compiled applications across mobile, web, and desktop from a single codebase. Through guided sessions, attendees will learn the fundamentals of Dart programming, widget-based development, and best practices for creating high-performance, visually appealing applications. This workshop is designed to provide both theoretical understanding and practical experience, enabling participants to efficiently develop cross-platform solutions.
                               </p>
                             </div>
                           </div>
                           
-                          {/* What You'll Learn Section */}
+                          {/* Workshop Details */}
                           <div className="bg-gray-700/50 rounded-lg p-6 border border-gray-600">
-                            <h4 className="text-xl font-bold text-white mb-6 flex items-center">
+                            <h4 className="text-xl font-bold text-white mb-4 flex items-center">
                               <span className="w-2 h-8 bg-green-400 rounded-full mr-3"></span>
-                              What You'll Learn
+                              Workshop Details
                             </h4>
-                            <div className="grid sm:grid-cols-2 gap-4">
-                              <ul className="space-y-3 text-gray-300">
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Drone basics and fundamentals</span>
-                                </li>
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Building your own drone</span>
-                                </li>
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Real-world case studies</span>
-                                </li>
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Live simulations</span>
-                                </li>
-                              </ul>
-                              <ul className="space-y-3 text-gray-300">
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Team challenges</span>
-                                </li>
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Hands-on building experience</span>
-                                </li>
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">Live demonstrations</span>
-                                </li>
-                                <li className="flex items-center">
-                                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
-                                  <span className="text-sm font-medium">UAV technology insights</span>
-                                </li>
-                              </ul>
+                            <div className="grid sm:grid-cols-2 gap-6 text-gray-300">
+                              <div>
+                                <h5 className="font-semibold text-white mb-2">Registration Fee</h5>
+                                <p className="text-lg font-bold text-green-400">₹300/-</p>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-white mb-2">Contact</h5>
+                                <p className="text-sm">+91 93421 99098</p>
+                                <p className="text-sm">+91 99621 29234</p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -780,9 +757,84 @@ export default function EventsPage() {
                       <div className="flex justify-center">
                         <button 
                           className="bg-white hover:bg-gray-200 text-gray-800 font-medium py-3 px-8 rounded-lg transition-colors"
-                          onClick={() => window.open('https://forms.gle/jcNwQCzPzTQ8jeBu6', '_blank')}
+                          onClick={() => window.open('https://forms.gle/fYjBXKKsGKz6QJqT6', '_blank')}
                         >
-                          Register for Workshop
+                          Register for Flutter Workshop
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* React Workshop */}
+                <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-600">
+                  <div className="bg-gradient-to-r from-cyan-600 to-blue-600 p-6 text-white border-b border-gray-600">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">REACT WORKSHOP</h3>
+                    <p className="text-cyan-100 text-sm sm:text-base">~Crafting Modern Web Experiences.</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="grid lg:grid-cols-3 gap-6">
+                      {/* Workshop Image - Left Side */}
+                      <div className="lg:col-span-1">
+                        <img 
+                          src="/assets/react.jpg" 
+                          alt="React Workshop" 
+                          className="w-full h-auto object-contain rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200"
+                          style={{ imageRendering: 'pixelated' }}
+                          onClick={() => {
+                            setPopupImage('/assets/react.jpg');
+                            setPopupImageAlt('React Workshop');
+                            setShowImagePopup(true);
+                          }}
+                        />
+                      </div>
+                      
+                      {/* Workshop Content - Right Side */}
+                      <div className="lg:col-span-2">
+                        <div className="space-y-6">
+                          {/* Workshop Overview Section */}
+                          <div className="bg-gray-700/50 rounded-lg p-6 border border-gray-600">
+                            <h4 className="text-xl font-bold text-white mb-4 flex items-center">
+                              <span className="w-2 h-8 bg-cyan-400 rounded-full mr-3"></span>
+                              Workshop Overview
+                            </h4>
+                            <div className="text-gray-300 leading-relaxed">
+                              <p className="text-base">
+                                The React Workshop provides participants with a comprehensive introduction to one of the most widely used JavaScript libraries for building interactive user interfaces. Through structured sessions, attendees will explore component-based architecture, state management, and best practices for developing scalable, high-performance web applications. This workshop combines theoretical concepts with hands-on exercises, equipping participants to create modern, responsive, and maintainable front-end solutions.
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* Workshop Details */}
+                          <div className="bg-gray-700/50 rounded-lg p-6 border border-gray-600">
+                            <h4 className="text-xl font-bold text-white mb-4 flex items-center">
+                              <span className="w-2 h-8 bg-green-400 rounded-full mr-3"></span>
+                              Workshop Details
+                            </h4>
+                            <div className="grid sm:grid-cols-2 gap-6 text-gray-300">
+                              <div>
+                                <h5 className="font-semibold text-white mb-2">Registration Fee</h5>
+                                <p className="text-lg font-bold text-green-400">₹300/-</p>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-white mb-2">Contact</h5>
+                                <p className="text-sm">+91 93421 99098</p>
+                                <p className="text-sm">+91 99621 29234</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 pt-6 border-t border-gray-600">
+                      <div className="flex justify-center">
+                        <button 
+                          className="bg-white hover:bg-gray-200 text-gray-800 font-medium py-3 px-8 rounded-lg transition-colors"
+                          onClick={() => window.open('https://forms.gle/rf5NAaRtMRZECtJq9', '_blank')}
+                        >
+                          Register for React Workshop
                         </button>
                       </div>
                     </div>
@@ -1142,8 +1194,8 @@ export default function EventsPage() {
             
             <div className="bg-transparent rounded-lg overflow-hidden">
               <img 
-                src="/assets/drone.png" 
-                alt="Drone Workshop" 
+                src={popupImage} 
+                alt={popupImageAlt} 
                 className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
                 style={{ imageRendering: 'pixelated' }}
               />

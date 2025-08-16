@@ -49,6 +49,18 @@ export default function LinksPage() {
       title: "Lectern Lore",
       category: "Minecraft Themed Technical Quiz",
       registrationLink: "https://forms.gle/jKoeZaBKyoqttG7r9"
+    },
+    {
+      id: 9,
+      title: "Flutter Workshop",
+      category: "Workshop",
+      registrationLink: "https://forms.gle/fYjBXKKsGKz6QJqT6"
+    },
+    {
+      id: 10,
+      title: "React Workshop",
+      category: "Workshop",
+      registrationLink: "https://forms.gle/rf5NAaRtMRZECtJq9"
     }
   ];
 

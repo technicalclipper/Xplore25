@@ -844,6 +844,23 @@ export default function EventsPage() {
             </div>
           )}
 
+          {/* Sponsors Section */}
+          <div className="mt-16 border-t border-gray-700 pt-8">
+            <div className="text-center">
+              <h4 className="text-xl font-bold text-white mb-6">Sponsors</h4>
+              <div className="flex justify-center items-center">
+                <div className="bg-white rounded-lg p-6 shadow-lg">
+                  <img 
+                    src="/assets/kaar.jpg" 
+                    alt="KaarTech Logo" 
+                    className="h-24 w-auto object-contain"
+                    style={{ imageRendering: 'pixelated' }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Footer */}
           <footer className="mt-16 border-t border-gray-700 pt-8">
             <div className="text-center">

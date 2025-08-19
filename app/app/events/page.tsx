@@ -16,6 +16,46 @@ export default function EventsPage() {
   const flipAudioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
+  // Check for sponsor fragment in URL
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash;
+      if (hash === '#sponsor') {
+        // Function to scroll to sponsor section
+        const scrollToSponsor = () => {
+          const sponsorSection = document.getElementById('sponsor-section');
+          if (sponsorSection) {
+            console.log('Scrolling to sponsor section');
+            sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            console.log('Sponsor section not found, retrying...');
+            // Retry after a longer delay if element not found
+            setTimeout(scrollToSponsor, 1000);
+          }
+        };
+        
+        // Initial delay to ensure page is fully loaded
+        setTimeout(scrollToSponsor, 1000);
+      }
+    }
+  }, []);
+
+  // Also listen for hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#sponsor') {
+        const sponsorSection = document.getElementById('sponsor-section');
+        if (sponsorSection) {
+          console.log('Hash changed - scrolling to sponsor section');
+          sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+  
   const [events, setEvents] = useState([
     {
       id: 1,
@@ -844,18 +884,21 @@ export default function EventsPage() {
             </div>
           )}
 
-          {/* Sponsors Section */}
-          <div className="mt-16 border-t border-gray-700 pt-8">
+          {/* Title Sponsor Section */}
+          <div id="sponsor-section" className="mt-16 border-t border-gray-700 pt-8 scroll-mt-20">
             <div className="text-center">
-              <h4 className="text-xl font-bold text-white mb-6">Sponsors</h4>
+              <h4 className="text-2xl font-bold text-white mb-6">Title Sponsor</h4>
               <div className="flex justify-center items-center">
-                <div className="bg-white rounded-lg p-6 shadow-lg">
-                  <img 
-                    src="/assets/kaar.jpg" 
-                    alt="KaarTech Logo" 
-                    className="h-24 w-auto object-contain"
-                    style={{ imageRendering: 'pixelated' }}
-                  />
+                <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-blue-500">
+                  <div className="w-48 h-48 flex items-center justify-center">
+                    <img 
+                      src="/assets/kaar.jpg" 
+                      alt="KaarTech Logo" 
+                      className="w-full h-full object-contain"
+                      style={{ imageRendering: 'pixelated' }}
+                    />
+                  </div>
+                  
                 </div>
               </div>
             </div>
